@@ -7,7 +7,25 @@
         $email = $_POST["email"];
         $password =$_POST["password"];
         $modeloUsuario = new Usuario();
-        $insertarUsuario= $modeloUsuario->insertarUsuario($nombre,$email,$password);
+
+        $modeloUsuario->insertarUsuario($nombre,$email,$password);
+
+        if(isset($modeloUsuario)){
+            echo "Registro de usuario satisfactorio..";
+            header('refresh:3; url=../vista/add.php');
+        }else{
+            echo"fallo al insertar registro..";
+            header('refresh:2; url=../../index.php');
+
+
+
+    
+
+
+
+
+
+        }
 
        /*  if(isset($modeloUsuario)==1){
             header('Location: ../vista/login.php');

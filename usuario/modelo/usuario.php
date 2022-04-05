@@ -32,6 +32,7 @@ public function insertarUsuario($nombre, $email ,$password){
     $tabla->bindParam(':nombre', $nombre);
     $tabla->bindParam(':email', $email);
     $tabla->bindParam(':password',$password);
+
     if($tabla->execute()){
         echo "Registro de usuario satisfactorio..";
         header('refresh:3; url=../vista/add.php');
@@ -39,7 +40,16 @@ public function insertarUsuario($nombre, $email ,$password){
         echo"fallo al insertar registro..";
         header('refresh:2; url=../../index.php');
     }
-    
+}
+    //ver todos los usuarios
+    public function getUsuarios(){
+        $rows = Null;
+        $tabla = $this->db->prepare("SELECT id, nombre,email, password FROM usuario");
+        $tabla ->execute();
+        while ($result = $tabla->fetch()) {
+            $rows[] =$result;
+        }
+        return $rows;
 
 
  }
